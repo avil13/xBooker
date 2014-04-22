@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>xBooker</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <link rel="stylesheet" href="css/topcoat-mobile-dark.css">
+    <link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--
+    <script src="js/cordova.js"></script>
+     -->
+
+    <script src="js/breeze.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+
+
+    <div class="topcoat-tab-bar">
+        <label class="topcoat-tab-bar__item">
+            <input type="radio" name="tab-bar">
+            <button class="topcoat-tab-bar__button nav-btn" id="flow">Расходы</button>
+        </label>
+        <label class="topcoat-tab-bar__item">
+            <input type="radio" name="tab-bar">
+            <button class="topcoat-tab-bar__button nav-btn" id="income">Доходы</button>
+        </label>
+    </div>
+
+    <div class="topcoat-tab-bar">
+        <label class="topcoat-tab-bar__item">
+            <input type="radio" name="tab-bar">
+            <button class="topcoat-tab-bar__button nav-btn" id="plan">Планы</button>
+        </label>
+        <label class="topcoat-tab-bar__item">
+            <input type="radio" name="tab-bar">
+            <button class="topcoat-tab-bar__button nav-btn" id="graph">Графики</button>
+        </label>
+    </div>
+
+
+    <br>
+
+
+    <!-- @@@ -->
+
+    <div id="flow-page" class="page" style="display:none;">
+        <label for="date" class="lbl">
+            Дата:
+            <input type="text" id="date_flow" class="topcoat-text-input date" value="" disabled>
+        </label>
+
+        <label for="money_flow" class="lbl">
+            Сумма:
+            <input type="number" id="money_flow" class="topcoat-text-input" value="">
+        </label>
+
+        <label for="category" class="lbl">
+            Категория:
+            <select name="category" id="category_flow">
+                <optgroup label="Расходы" id="groups">
+                    <option value="">Благотворительность</option>
+                    <option value="">Сбережения</option>
+                    <option value="">Налоги</option>
+                    <option value="">Расходы на жизнь(кварплата и т.д.)</option>
+                    <option value="">Хозяйственные нужды(еда, одежда и т.д.)</option>
+                    <option value="">Транспорт</option>
+                    <option value="">Досуг / Отдых</option>
+                    <option value="">Страхование</option>
+                    <option value="">Долги / Разное</option>
+                    <option value="">Деловые расходы</option>
+                </optgroup>
+                <optgroup label="Планы" id="plans">
+                </optgroup>
+            </select>
+        </label>
+
+        <label for="comment_flow" class="lbl">
+            <textarea id="comment_flow" class="topcoat-textarea" placeholder="Комментарий"></textarea>
+        </label>
+
+        <label for="submit_flow" class="lbl">
+            <button id="save_flow" class="topcoat-button--large--cta">Сохранить</button>
+        </label>
+    </div>
+
+
+    <!-- @@@ -->
+
+    <div id="income-page" class="page" style="display:none;">
+        <label for="date_income" class="lbl">
+            Дата:
+            <input type="text" id="date_income" class="topcoat-text-input date" value="" disabled>
+        </label>
+
+        <label for="summa_income" class="lbl">
+            Сумма:
+            <input type="number" id="summa_income" class="topcoat-text-input" value="">
+        </label>
+
+
+        <label for="comment" class="lbl">
+            <textarea id="comment" class="topcoat-textarea" placeholder="Комментарий"></textarea>
+        </label>
+
+        <label for="save_income" class="lbl">
+            <button id="save_income" class="topcoat-button--large--cta">Сохранить</button>
+        </label>
+    </div>
+
+
+    <!-- @@@ -->
+    <div id="plan-page" class="page" style="display:none;">
+
+        <label class="lbl">
+            <button class="topcoat-button--cta" id="add-plan">Добавить план</button>
+        </label>
+
+
+
+        <label class="lbl add-plan">
+            <button class="topcoat-button--cta" id="save-plan">Сохранить план</button>
+        </label>
+
+
+        <label class="lbl add-plan">
+            <input type="text" id="name_plan" class="topcoat-text-input btn-plan" value="" placeholder="Название">
+        </label>
+
+        <label class="lbl add-plan">
+            <input type="number" id="nead_plan" class="topcoat-text-input btn-plan" value="" placeholder="Необходимая сумма">
+        </label>
+
+        <label class="lbl add-plan">
+            <hr>
+        </label>
+
+
+
+
+        <label class="lbl">
+            <div class="topcoat-list">
+                <h3 class="topcoat-list__header">Планы</h3>
+                <ul class="topcoat-list__container" id="plans-list">
+                </ul>
+            </div>
+        </label>
+    </div>
+
+    <!-- @@@ -->
+
+    <div id="graph-page" class="page" style="display:none;">
+
+        <label class="lbl">
+            От:
+            <input type="text" id="date1_graph" class="topcoat-text-input date date_ot" value="" disabled>
+        </label>
+
+        <label class="lbl">
+            До:
+            <input type="text" id="date2_graph" class="topcoat-text-input date" value="" disabled>
+        </label>
+
+        <label class="lbl">
+            <button class="topcoat-button--cta" id="show-graph">Показать график</button>
+        </label>
+
+
+
+        <div class="lbl">
+            <div canvas id="myChart"></div >
+        </div>
+
+        <div class="lbl" id="graph-lists">
+        </div>
+    </div>
+
+
+</body>
+
+</html>
