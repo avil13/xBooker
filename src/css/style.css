@@ -1,3 +1,9 @@
+.content{
+  display:block;
+  width:100%;
+  padding:4px;
+}
+
 select {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -18,106 +24,65 @@ select {
   -moz-appearance: button;
 }
 
-.topcoat-tab-bar{
-    width:100%;
+
+.topcoat-button-bar{
+  margin:4px auto;
+}
+.topcoat-button-bar__button{
+  padding: 0 .8rem;
+}
+.topcoat-button-bar__button.active,
+.topcoat-button-bar__button--large.active {
+  z-index: 1;
+  border: 1px solid #333434;
+  background-color: #3f4041;
+  box-shadow: inset 0 1px rgba(0,0,0,0.05);
 }
 
-.topcoat-tab-bar__button {
-    width: 100%;
-    border-right: 1px solid #333;
-}
-.topcoat-tab-bar__button.active,
-.topcoat-tab-bar__button--large.active,
-:checked + .topcoat-tab-bar__button {
-    color: #288edf;
-    background-color: #3f4041;
-    box-shadow: inset 0 0 1px rgba(0,0,0,0.05);
-}
-
-.topcoat-tab-bar__item:first-child {
-    border-left: 1px solid #333;
-}
 
 .lbl{
-    margin-left:4%;
-    border-bottom:1px solid #666767;
-    display:block;
-    float:left;
-    line-height:3em;
-    padding:4px;
-    color:#E0E0E0;
-    width:90%;
-}
-.lbl:last-child{
-    border-bottom:none;
+  width:100%;
+  /*border-bottom:1px solid #646464;*/
+  display:block;
+  padding:4px;
 }
 
-.lbl input,
-.lbl select{
-    float:right;
+.topcoat-textarea{
+  width:97%;
+  padding:1rem;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
 }
 
-.lbl textarea{
-    width:100%;
-    font-size:1.5rem;
-    padding:0.1rem 0.4rem;
+
+/*
+                ___          _                 __
+   ____  ____ _/   |  ____  (_)___ ___  ____ _/ /____
+  / __ \/ __ `/ /| | / __ \/ / __ `__ \/ __ `/ __/ _ \
+ / / / / /_/ / ___ |/ / / / / / / / / / /_/ / /_/  __/
+/_/ /_/\__, /_/  |_/_/ /_/_/_/ /_/ /_/\__,_/\__/\___/
+      /____/
+*/
+/*
+ CSS-класс animate-enter является именем события,
+ подставленным в атрибут ngAnimate.
+*/
+.animate-enter-setup {
+ -webkit-transition: 1s linear all; /* Safari/Chrome */
+ -moz-transition: 1s linear all; /* Firefox */
+ -ms-transition: 1s linear all; /* IE10 */
+ -o-transition: 1s linear all; /* Opera */
+ transition: 1s linear all; /* Future Browsers */
+
+ /* Подготовка кода анимации */
+ opacity: 0;
 }
 
-.date:disabled {
-    color:#C6C8DC;
-    opacity:1;
-}
-
-.ui-datepicker-trigger{
-    float:right;
-}
-
-.lbl .btn-plan{
-    width:100%;
-}
-
-.add-plan{
-    background-color: #3A3A3A;
-    display:none;
-}
-
-#plans-list small{
-    font-size: 0.7rem;
-    border-top: 1px solid #333;
-    display:block;
-    width:100%;
-}
-
-.del-plan{
-    float: right;
-    color: #F00;
-    font-weight: bold;
-    font-size: 2rem;
-    display: block;
-    padding: 0 10px;
-}
-
-#graph-lists{
-    background: rgba(22,22,22, 0.6);
-    border: 1px solid #101010;
-    box-shadow: inset 0 0 4px 2px rgba(28, 56, 19, 0.8);
-    color: #333333;
-    display: block;
-    overflow: auto;
-    padding: 8px;
-    white-space: normal;
-    font-size: 0.9em;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.6) , 0 0 2px rgba(255,255,255,.2) !important;
-    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.6) , 0 0 2px rgba(255,255,255,.2) !important;
-    shadow: inset 0 1px 2px rgba(0,0,0,.6) , 0 0 2px rgba(255,255,255,.2) !important;
-    margin-bottom: 60px;
-    margin-top: 10px;
-}
-
-#myChart{
-    display:block;
-    margin:10px auto;
+/*
+ Имейте в виду, что можно совместить оба CSS-класса
+ вместе, чтобы избежать любых конфликтов CSS
+*/
+.animate-enter-setup.animate-enter-start {
+ /* Код анимации */
+ opacity: 1;
 }

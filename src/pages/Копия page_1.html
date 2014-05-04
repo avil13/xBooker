@@ -1,0 +1,15 @@
+
+<table>
+    <tr>
+        <th><a href="" ng-click="sortFilter = 'name'; reverse=!reverse">name</a></th>
+        <th><a href="" ng-click="sortFilter = 'surname'; reverse=!reverse">surname</a></th>
+        <th><a href="" ng-click="sortFilter = 'money'; reverse=!reverse">money</a></th>
+    <tr>
+    <tr ng-repeat="el in list | orderBy:sortFilter:reverse">
+        <td>{{el.name}}</td>
+        <td>{{el.surname}}</td>
+        <td>{{el.money | number}}</td>
+    </tr>
+</table>
+
+
