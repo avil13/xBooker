@@ -1,0 +1,19 @@
+<label class="lbl">
+    <input value="{{spending_date | date:'dd MMM yyyy'}}" type="text" class="topcoat-text-input" placeholder="Дата" readonly>
+</label>
+
+<label class="lbl">
+    <input ng-model="money" type="number" class="topcoat-text-input" placeholder="Сумма">
+</label>
+
+<label class="lbl">
+    <select ng-model="select" ng-options="gr.name group by gr.grp for gr in groups"></select>
+</label>
+
+<label class="lbl">
+    <textarea ng-model="comment" class="topcoat-textarea" placeholder="Комментарий" rows="6"></textarea>
+</label>
+
+<label class="lbl">
+    <button ng-click="getData()" class="topcoat-button--large--cta">Сохранить</button>
+</label>

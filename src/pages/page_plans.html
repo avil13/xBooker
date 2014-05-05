@@ -1,0 +1,32 @@
+<label class="lbl">
+    <button ng-click="new_plan=!new_plan" class="topcoat-button--cta">Добавить план</button>
+</label>
+
+
+
+<label class="lbl add-plan" ng-class="{show: new_plan==true}">
+    <button class="topcoat-button--cta" ng-click="savePlan()">Сохранить план</button>
+</label>
+
+<label class="lbl add-plan" ng-class="{show: new_plan==true}">
+    <input ng-model="name" type="text" class="topcoat-text-input btn-plan" placeholder="Название" value="">
+</label>
+
+<label class="lbl add-plan" ng-class="{show: new_plan==true}">
+    <input ng-model="nead" type="number" class="topcoat-text-input btn-plan" placeholder="Необходимая сумма" value="">
+</label>
+
+
+
+<label class="lbl">
+    <div class="topcoat-list">
+        <h3 class="topcoat-list__header">Планы</h3>
+        <ul class="topcoat-list__container" id="plans-list">
+            <li class="topcoat-list__item" ng-repeat="pl in plans">
+                {{pl.name}} ( {{(100* pl.money / pl.nead)| number:0}}% )
+                <small>{{pl.money | currency}} / {{pl.nead | currency}}</small>
+                <span ng-click="removePlan(pl)" class="del-plan">X</span>
+            </li>
+        </ul>
+    </div>
+</label>

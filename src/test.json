@@ -1,57 +1,50 @@
-var plans = {
-    "1": {
-        "name": "Мото",
-        "money": 150000,
-        "nead": 300000,
-        "percent": 50
-    },
-    "2": {
-        "name": "Дом",
-        "money": 1000,
-        "nead": 3000000,
-        "percent": 0
-    }
-};
+var plans = [{
+    "name": "Мото",
+    "money": 150000,
+    "nead": 300000,
+    "grp": "Планы"
+}, {
+    "name": "Дом",
+    "money": 1000,
+    "nead": 3000000,
+    "grp": "Планы"
+}];
 
 
 
-
-groups: {
-    "g1": {
-        "name": "Благотворительность"
-    },
-    "g2": {
-        "name": "Сбережения"
-    },
-    "g3": {
-        "name": "Отдых"
-    }
-}
+var groups: [{
+    "name": "Благотворительность",
+    "grp": "Основные расходы"
+}, {
+    "name": "Сбережения",
+    "grp": "Основные расходы"
+}, {
+    "name": "Отдых",
+    "grp": "Основные расходы"
+}]
 
 
 
-flow: {
+var flow: {
     "11101": {
-        "category": 1,
-        "comment": "прогулял",
-        "date": "2014-01-02",
-        "id": 3,
-        "money": 7000
+        "date": $scope.spending_date,
+        "money": $scope.money,
+        "nead": ($scope.select.nead || ''),
+        "category": $scope.select.value,
+        "name": $scope.select.name,
+        "comment": $scope.comment
     }
 }
 
 
 
-
-
-
-        // data = [{
-        //     value: 30,
-        //     color: "#F38630"
-        // }, {
-        //     value: 50,
-        //     color: "#E0E4CC"
-        // }, {
-        //     value: 100,
-        //     color: "#69D2E7"
-        // }];
+// data = [{
+//     value: 30,
+//     color: "#F38630"
+// }, {
+//     value: 50,
+//     color: "#E0E4CC"
+// }, {
+//     value: 100,
+//     color: "#69D2E7"
+// }];
