@@ -74,16 +74,16 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
 
             var plans = br.storage.get('plans');
-            var select =  JSON.stringify( $scope.select);
+            var select = JSON.stringify($scope.select);
             var i_plans = false;
 
-            for(var i=0; i< plans.length; i++){
-                if(JSON.stringify(plans[i])===select){
+            for (var i = 0; i < plans.length; i++) {
+                if (JSON.stringify(plans[i]) === select) {
                     i_plans = i;
                 }
             }
 
-            if(i_plans!==false){
+            if (i_plans !== false) {
                 plans[i_plans]['money'] = plans[i_plans]['money'] + $scope.money;
                 br.storage.set('plans', plans);
             }
@@ -169,6 +169,104 @@ xApp.controller('plansCtrl', ['$scope',
 
         };
     }
+]);
+
+
+
+xApp.controller('incomeCtrl', ['$scope',
+    function($scope) {
+
+    }
+]);
+
+
+
+xApp.controller('dateCtrl', ['$scope',
+    function($scope) {
+
+        $scope.currDate = new Date();
+
+        var getWeeks = function() {
+            var date = new Date($scope.currDate.getTime());
+
+            var startMonth = date.getMonth(),
+                startYear = date.getYear();
+            date.setDate(1);
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+
+            if (date.getDay() === 0) {
+                date.setDate(-5);
+            } else {
+                date.setDate(date.getDate() - (date.getDay() - 1));
+            }
+            if (date.getDate() === 1) {
+                date.setDate(-6);
+            }
+
+            var weeks = [];
+            while (weeks.length < 6) {
+                /*jshint -W116 */
+                if (date.getYear() === startYear && date.getMonth() > startMonth) break;
+                var week = [];
+                for (var i = 0; i < 7; i++) {
+                    week.push(new Date(date));
+                    date.setDate(date.getDate() + 1);
+                }
+                weeks.push(week);
+            }
+
+            return weeks;
+        };
+
+
+
+        var getDaysOfWeek = function(date) {
+            date = new Date(date || new Date());
+            date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            date.setDate(date.getDate() - (date.getDay() - 1));
+            var days = [];
+            for (var i = 0; i < 7; i++) {
+                days.push(new Date(date));
+                date.setDate(date.getDate() + 1);
+            }
+            return days;
+        };
+
+
+
+        $scope.next = function(delta) {
+            delta = delta || 1;
+
+            var month = $scope.currDate.getMonth() + delta;
+
+            $scope.currDate.setMonth(month);
+            $scope.weeks = getWeeks();
+        };
+
+        $scope.prev = function() {
+            $scope.next(-1);
+        };
+
+        $scope.setDate = function(day) {
+            $scope.currDate = day;
+        };
+
+        $scope.chekDate = function(day, currDate) {
+            return (day.getFullYear() === currDate.getFullYear()) &&
+                (day.getMonth() === currDate.getMonth()) &&
+                (day.getDate() === currDate.getDate());
+        };
+
+
+
+        $scope.weeks = getWeeks();
+        $scope.weekdays = getDaysOfWeek();
+    }
+
+
 ]);
 
 

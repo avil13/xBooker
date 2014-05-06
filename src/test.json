@@ -36,6 +36,14 @@ var flow: {
     }
 }
 
+var income = {
+    "222311": {
+        "date": 11111,
+        "money": 3000,
+        "name": "income_text"
+    }
+}
+
 
 
 // data = [{

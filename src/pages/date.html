@@ -1,0 +1,22 @@
+<table class="date">
+
+    <tr>
+        <th ng-click="prev()">‹</th>
+        <th colspan="5" class="year">{{currDate|date:"longDate"}}</th>
+        <th ng-click="next()">›</th>
+    </tr>
+
+    <tr>
+        <th ng-repeat="day in weekdays">{{ day|date:"EEE" }}</th>
+    </tr>
+
+    <tr ng-repeat="week in weeks">
+
+        <td ng-repeat="day in week"
+          ng-click="setDate(day)"
+          ng-class="{'active':chekDate(day,currDate), 'not':(day.getMonth()!=currDate.getMonth())}">
+            <span>{{day | date:'dd'}}</span>
+        </td>
+
+    </tr>
+</table>

@@ -8,16 +8,16 @@ xApp.config(['$routeProvider',
                 controller: 'spendingCtrl'
             })
             .when('/profit', {
-                templateUrl: 'pages/page_1.html',
-                controller: 'BodyCtrl'
+                templateUrl: 'pages/page_income.html',
+                controller: 'incomeCtrl'
             })
             .when('/plans', {
                 templateUrl: 'pages/page_plans.html',
                 controller: 'plansCtrl'
             })
             .when('/graphik', {
-                templateUrl: 'pages/page_1.html',
-                controller: 'BodyCtrl'
+                templateUrl: 'pages/date.html',
+                controller: 'dateCtrl'
             })
             .otherwise({
                 redirectTo: '/spending'
