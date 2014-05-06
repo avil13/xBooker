@@ -1,6 +1,9 @@
-<label class="lbl">
-    <input value="{{spending_date | date:'dd MMM yyyy'}}" type="text" class="topcoat-text-input" placeholder="Дата" readonly>
-</label>
+
+<div ng-controller="dateCtrl" class="lbl" ng-model="date">
+    <div ng-include="'pages/date.html'"></div>
+</div>
+
+
 
 <label class="lbl">
     <input ng-model="money" type="number" class="topcoat-text-input" placeholder="Сумма">

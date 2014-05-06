@@ -15,9 +15,9 @@ xApp.config(['$routeProvider',
                 templateUrl: 'pages/page_plans.html',
                 controller: 'plansCtrl'
             })
-            .when('/graphik', {
-                templateUrl: 'pages/date.html',
-                controller: 'dateCtrl'
+            .when('/chart', {
+                templateUrl: 'pages/page_chart.html',
+                controller: 'chartCtrl'
             })
             .otherwise({
                 redirectTo: '/spending'

@@ -1,24 +1,4 @@
-xApp.controller('BodyCtrl', function($scope) {
-    $scope.list = [{
-        name: 'jon',
-        surname: 'Asmith',
-        money: 1000
-    }, {
-        name: 'Alex',
-        surname: 'Pi',
-        money: 2000
-    }, {
-        name: 'Gektor',
-        surname: 'xPo',
-        money: 3000
-    }];
-
-    $scope.sortFilter = 'name';
-    $scope.reverse = true;
-});
-
-
-
+// Контроллер меню
 xApp.controller('menuCtrl', ['$scope', '$location', '$route',
     function($scope, $location, $route) {
 
@@ -32,7 +12,7 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
             url: '#/plans',
             name: 'Планы'
         }, {
-            url: '#/graphik',
+            url: '#/chart',
             name: 'Графики'
         }];
 
@@ -46,7 +26,7 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
 ]);
 
 
-
+// Контроллер расходов
 xApp.controller('spendingCtrl', ['$scope', '$http',
     function($scope, $http) {
         $http.get('groups.json').success(function(data) {
@@ -61,7 +41,6 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
             $scope.select = $scope.groups[0];
         });
 
-        $scope.spending_date = new Date();
         $scope.money = '';
         $scope.comment = '';
 
@@ -90,9 +69,11 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
 
             var flow = {};
+            var date = $scope.$$childHead.currDate;
 
-            flow[parseInt(($scope.spending_date.getTime() / 1000), 10) + ''] = {
-                date: $scope.spending_date,
+
+            flow[parseInt((date.getTime() / 1000), 10) + ''] = {
+                date: date,
                 money: $scope.money,
                 nead: ($scope.select.nead || ''),
                 category: $scope.select.value,
@@ -100,8 +81,6 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
                 comment: $scope.comment
             };
 
-
-            $scope.spending_date = new Date();
 
             if (!br.storage.get('flow')) {
                 br.storage.set('flow', {});
@@ -119,6 +98,7 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
 
 
+// Контроллер планов
 xApp.controller('plansCtrl', ['$scope',
     function($scope) {
         $scope.new_plan = false;
@@ -172,7 +152,7 @@ xApp.controller('plansCtrl', ['$scope',
 ]);
 
 
-
+// Контроллер доходов
 xApp.controller('incomeCtrl', ['$scope',
     function($scope) {
 
@@ -180,11 +160,14 @@ xApp.controller('incomeCtrl', ['$scope',
 ]);
 
 
-
+/// Контроллер календаря
 xApp.controller('dateCtrl', ['$scope',
     function($scope) {
 
         $scope.currDate = new Date();
+
+        $scope.typeView = false;
+
 
         var getWeeks = function() {
             var date = new Date($scope.currDate.getTime());
@@ -192,10 +175,10 @@ xApp.controller('dateCtrl', ['$scope',
             var startMonth = date.getMonth(),
                 startYear = date.getYear();
             date.setDate(1);
-            date.setHours(0);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
+            date.setHours(1);
+            date.setMinutes(1);
+            date.setSeconds(1);
+            date.setMilliseconds(1);
 
             if (date.getDay() === 0) {
                 date.setDate(-5);
@@ -252,12 +235,17 @@ xApp.controller('dateCtrl', ['$scope',
 
         $scope.setDate = function(day) {
             $scope.currDate = day;
+            $scope.typeView = false;
         };
 
         $scope.chekDate = function(day, currDate) {
             return (day.getFullYear() === currDate.getFullYear()) &&
                 (day.getMonth() === currDate.getMonth()) &&
                 (day.getDate() === currDate.getDate());
+        };
+
+        $scope.changeView = function() {
+            $scope.typeView = true;
         };
 
 
@@ -269,6 +257,33 @@ xApp.controller('dateCtrl', ['$scope',
 
 ]);
 
+
+
+// Контроллер графиков
+xApp.controller('chartCtrl', ['$scope',
+    function($scope) {
+        var width = (window.innerWidth > window.innerHeight) ? window.innerWidth : window.innerHeight;
+
+        document.getElementById("myChart").width = width - 120;
+        document.getElementById("myChart").height = width - 200;
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+        var data = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,1)",
+                data: [59, 90, 81, 56, 55, 40]
+            }]
+        };
+
+        var myNewChart = new Chart(ctx).Bar(data);
+
+
+
+    }
+]);
 
 
 /////
