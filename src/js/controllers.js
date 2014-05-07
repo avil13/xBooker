@@ -71,8 +71,13 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
             var flow = {};
             var date = $scope.$$childHead.currDate;
 
+            if (!br.storage.get('flow')) {
+                br.storage.set('flow', {});
+            }
 
-            flow[parseInt((date.getTime() / 1000), 10) + ''] = {
+            var obj = br.storage.get('flow');
+
+            flow[parseInt((date.getTime() + count_prs(obj)), 10) + ''] = {
                 date: date,
                 money: $scope.money,
                 nead: ($scope.select.nead || ''),
@@ -81,16 +86,10 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
                 comment: $scope.comment
             };
 
-
-            if (!br.storage.get('flow')) {
-                br.storage.set('flow', {});
-            }
-
             br.storage.extend('flow', flow);
 
             $scope.money = '';
             $scope.comment = '';
-
         };
 
     }
@@ -175,9 +174,9 @@ xApp.controller('dateCtrl', ['$scope',
             var startMonth = date.getMonth(),
                 startYear = date.getYear();
             date.setDate(1);
-            date.setHours(1);
+            date.setHours(0);
             date.setMinutes(1);
-            date.setSeconds(1);
+            date.setSeconds(0);
             date.setMilliseconds(1);
 
             if (date.getDay() === 0) {
@@ -270,29 +269,94 @@ xApp.controller('chartCtrl', ['$scope',
         var ctx = document.getElementById("myChart").getContext("2d");
         var chart = new Chart(ctx);
 
+        var getDayArr = function(Obj, t1, t2) {
+            var nead_date = {},
+                d;
+
+            for (var k in Obj) {
+                d = parseInt(k, 10);
+                if (d > t2) break;
+                if (d >= t1) {
+                    nead_date[d] = Obj[k].money;
+                }
+            }
+
+            return nead_date;
+        };
+
+        var sumDate = function(Obj, tt1, tt2) {
+            var Sum = 0,
+                d;
+
+            for (var k in Obj) {
+                d = parseInt(k, 10);
+
+                if (d > tt2) break;
+
+                if (d >= tt1) {
+                    Sum += Obj[k];
+                }
+            }
+
+            return Sum;
+        };
+
+
+        var getMonthArr = function(nameStorage, t1, t2) {
+
+            t1 = new Date(t1);
+            t1.setHours(0);
+            t1.setMinutes(0);
+            t1.setSeconds(10);
+            t1.setMilliseconds(0);
+            t1 = t1.getTime();
+
+            t2 = new Date(t2);
+            t2.setHours(23);
+            t2.setMinutes(59);
+            t2.setSeconds(59);
+            t2.setMilliseconds(999);
+            t2 = t2.getTime();
+
+            var storObj = br.storage.get(nameStorage),
+                nead_date = sortObj(getDayArr(storObj, t1, t2)),
+                dt = new Date(t1),
+                day = [],
+                d1, d2;
+
+            dt.setDate(dt.getDate() + 1);
+
+            while (dt.getTime() < t2) {
+
+                d1 = dt.getTime();
+                dt.setDate(dt.getDate() + 1);
+                d2 = dt.getTime();
+
+                day.push(sumDate(nead_date, d1, d2));
+            }
+
+            return day;
+        };
+
 
         $scope.showChart = function() {
-            var date = new Date($scope.$$childHead.currDate);
-            var days = [];
-            var flow = [59, 90, 81, 56, 55, 40];
 
-            var m = date.getMonth();
-            var d = date.getDate();
+            var date = new Date($scope.$$childHead.currDate);
+
+            var m = date.getMonth(),
+                d = date.getDate();
+
+            var time2 = date.getTime();
+            date.setMonth(date.getMonth() - 1);
             var time1 = date.getTime();
 
-            date.setMonth(date.getMonth() - 1);
-            var time2 = date.getTime();
-
-            var k = Object.keys(br.storage.get('flow'));
-            var keys = [];
-            // проходим по ключам и делаем выборку тех которые подходят
-            // k.forEach()
-            // собираем массив расходов
-
+            var days = [];
             while (m > date.getMonth() || d > date.getDate()) {
                 date.setDate(date.getDate() + 1);
                 days.push(date.getDate());
             }
+
+            var flow = getMonthArr('flow', time1, time2);
 
             var data = {
                 labels: days,
