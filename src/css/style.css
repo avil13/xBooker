@@ -148,12 +148,13 @@ table.date .not{
   color: #dbdbdb;
 }
 
-
-
+.content .topcoat-button--cta{
+  margin-left: 0.7%;
+}
 
 
 #myChart{
-  margin: 20px auto;
+  margin:20px auto;
 }
 
 

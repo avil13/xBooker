@@ -13,7 +13,7 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
             name: 'Планы'
         }, {
             url: '#/chart',
-            name: 'Графики'
+            name: 'График'
         }];
 
         $scope.activePath = null;
@@ -268,19 +268,44 @@ xApp.controller('chartCtrl', ['$scope',
         document.getElementById("myChart").height = width - 200;
 
         var ctx = document.getElementById("myChart").getContext("2d");
+        var chart = new Chart(ctx);
 
-        var data = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,1)",
-                data: [59, 90, 81, 56, 55, 40]
-            }]
+
+        $scope.showChart = function() {
+            var date = new Date($scope.$$childHead.currDate);
+            var days = [];
+            var flow = [59, 90, 81, 56, 55, 40];
+
+            var m = date.getMonth();
+            var d = date.getDate();
+            var time1 = date.getTime();
+
+            date.setMonth(date.getMonth() - 1);
+            var time2 = date.getTime();
+
+            var k = Object.keys(br.storage.get('flow'));
+            var keys = [];
+            // проходим по ключам и делаем выборку тех которые подходят
+            // k.forEach()
+            // собираем массив расходов
+
+            while (m > date.getMonth() || d > date.getDate()) {
+                date.setDate(date.getDate() + 1);
+                days.push(date.getDate());
+            }
+
+            var data = {
+                labels: days,
+                datasets: [{
+                    fillColor: "rgba(73, 219, 120, 0.5)",
+                    strokeColor: "rgba(202, 255, 219, 0.8)",
+                    data: flow
+                }]
+            };
+
+
+            var myNewChart = chart.Bar(data);
         };
-
-        var myNewChart = new Chart(ctx).Bar(data);
-
-
 
     }
 ]);
