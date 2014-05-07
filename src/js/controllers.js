@@ -155,6 +155,43 @@ xApp.controller('plansCtrl', ['$scope',
 xApp.controller('incomeCtrl', ['$scope',
     function($scope) {
 
+        $scope.money = '';
+        $scope.name = '';
+
+
+        $scope.getData = function() {
+            if ($scope.money === '') {
+                alert('Вы забыли указать сумму');
+                return false;
+            }
+
+            if ($scope.name === '') {
+                alert('Вы забыли указать источник');
+                return false;
+            }
+
+            var income = {};
+            var date = $scope.$$childHead.currDate;
+
+            if (!br.storage.get('income')) {
+                br.storage.set('income', {});
+            }
+
+            var obj = br.storage.get('income');
+
+            income[parseInt((date.getTime() + count_prs(obj)), 10) + ''] = {
+                date: date,
+                money: $scope.money,
+                name: $scope.name
+            };
+
+            br.storage.extend('income', income);
+
+            $scope.money = '';
+            $scope.name = '';
+        };
+
+
     }
 ]);
 
@@ -357,14 +394,20 @@ xApp.controller('chartCtrl', ['$scope',
             }
 
             var flow = getMonthArr('flow', time1, time2);
+            var income = getMonthArr('income', time1, time2);
 
             var data = {
                 labels: days,
                 datasets: [{
+                    fillColor: "rgba(255, 18, 18, 0.5)",
+                    strokeColor: "rgba(255, 118, 118, 0.8)",
+                    data: flow
+                } ,{
                     fillColor: "rgba(73, 219, 120, 0.5)",
                     strokeColor: "rgba(202, 255, 219, 0.8)",
-                    data: flow
-                }]
+                    data: income
+                }
+                ]
             };
 
 

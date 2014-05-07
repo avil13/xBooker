@@ -1,0 +1,15 @@
+<div ng-controller="dateCtrl" class="lbl" ng-model="date">
+    <div ng-include="'pages/date.html'"></div>
+</div>
+
+<label class="lbl">
+    <input ng-model="name" type="text" class="topcoat-text-input" placeholder="Источник">
+</label>
+
+<label class="lbl">
+    <input ng-model="money" type="number" class="topcoat-text-input" placeholder="Сумма">
+</label>
+
+<label class="lbl">
+    <button ng-click="getData()" class="topcoat-button--large--cta">Сохранить</button>
+</label>
