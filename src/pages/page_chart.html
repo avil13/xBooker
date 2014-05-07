@@ -1,4 +1,3 @@
-
 <div ng-controller="dateCtrl" class="lbl" ng-model="date">
     <div ng-include="'pages/date.html'"></div>
 </div>
@@ -7,3 +6,17 @@
 <button class="topcoat-button--cta" ng-click="showChart()">Показать график за месяц</button>
 
 <canvas id="myChart"></canvas>
+
+<hr>
+
+<div ng-show="incomeSum" class="incomeSum lbl">
+    За выбранный период заработано:
+    <span>{{incomeSum | currency}}</span>
+</div>
+
+<div ng-show="incomeSum" class="flowSum lbl">
+    За выбранный период потрачено:
+    <span>{{flowSum | currency}}</span>
+</div>
+
+<div class="empty"></div>

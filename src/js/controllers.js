@@ -298,6 +298,11 @@ xApp.controller('dateCtrl', ['$scope',
 // Контроллер графиков
 xApp.controller('chartCtrl', ['$scope',
     function($scope) {
+
+        $scope.incomeSum = '';
+        $scope.flowSum = '';
+
+
         var width = (window.innerWidth > window.innerHeight) ? window.innerWidth : window.innerHeight;
 
         document.getElementById("myChart").width = width - 120;
@@ -402,16 +407,23 @@ xApp.controller('chartCtrl', ['$scope',
                     fillColor: "rgba(255, 18, 18, 0.5)",
                     strokeColor: "rgba(255, 118, 118, 0.8)",
                     data: flow
-                } ,{
+                }, {
                     fillColor: "rgba(73, 219, 120, 0.5)",
                     strokeColor: "rgba(202, 255, 219, 0.8)",
                     data: income
-                }
-                ]
+                }]
             };
 
 
             var myNewChart = chart.Bar(data);
+
+            $scope.incomeSum = income.reduce(function(pv, cv) {
+                return pv + cv;
+            }, 0);
+
+            $scope.flowSum = flow.reduce(function(pv, cv) {
+                return pv + cv;
+            }, 0);
         };
 
     }
