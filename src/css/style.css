@@ -1,6 +1,6 @@
 .content{
   display:block;
-  width:100%;
+  width:97%;
   padding:4px;
 }
 
@@ -11,7 +11,10 @@
 .content textarea,
 .content .topcoat-list__container{
   margin:0 auto;
-  width:96%;
+  width:100%;
+}
+.content .topcoat-list__container{
+  width:100%;
 }
  .content hr{
   width:90%;
@@ -137,7 +140,7 @@ select {
   position:relative;
 }
 .topcoat-list{
-  width: 90%;
+  width: 100%;
 }
 
 
@@ -214,6 +217,7 @@ table.date .not{
   top: 4px;
   right: 10px;
   left: 92%;
+  width: 2px;
 }
 
 

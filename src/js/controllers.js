@@ -90,6 +90,8 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
             $scope.money = '';
             $scope.comment = '';
+
+            alert('Даныне сохранены');
         };
 
     }
@@ -189,6 +191,8 @@ xApp.controller('incomeCtrl', ['$scope',
 
             $scope.money = '';
             $scope.name = '';
+
+            alert('Даныне сохранены');
         };
 
 
@@ -307,10 +311,10 @@ xApp.controller('chartCtrl', ['$scope',
         $scope.showListBtn = true;
 
 
-        var width = (window.innerWidth > window.innerHeight) ? window.innerWidth : window.innerHeight;
+        var width = (window.innerWidth < window.innerHeight) ? window.innerWidth : window.innerHeight;
 
-        document.getElementById("myChart").width = width - 120;
-        document.getElementById("myChart").height = width - 200;
+        document.getElementById("myChart").width = width - 6;
+        document.getElementById("myChart").height = width - 30;
 
         var ctx = document.getElementById("myChart").getContext("2d");
         var chart = new Chart(ctx);
