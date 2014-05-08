@@ -19,4 +19,13 @@
     <span>{{flowSum | currency}}</span>
 </div>
 
+<ul class="incomes topcoat-list__container">
+    <li ng-repeat="i in incomes " class="topcoat-list__item">
+        {{i.date | date:'longDate'}}
+        {{i.name}}
+        {{i.money}}
+    </li>
+</ul>
+
+
 <div class="empty"></div>

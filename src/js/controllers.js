@@ -301,6 +301,7 @@ xApp.controller('chartCtrl', ['$scope',
 
         $scope.incomeSum = '';
         $scope.flowSum = '';
+        $scope.incomes = [];
 
 
         var width = (window.innerWidth > window.innerHeight) ? window.innerWidth : window.innerHeight;
@@ -366,6 +367,8 @@ xApp.controller('chartCtrl', ['$scope',
                 day = [],
                 d1, d2;
 
+            $scope[nameStorage + 's'] = storObj;
+
             dt.setDate(dt.getDate() + 1);
 
             while (dt.getTime() < t2) {
@@ -414,7 +417,6 @@ xApp.controller('chartCtrl', ['$scope',
                 }]
             };
 
-
             var myNewChart = chart.Bar(data);
 
             $scope.incomeSum = income.reduce(function(pv, cv) {
@@ -424,7 +426,10 @@ xApp.controller('chartCtrl', ['$scope',
             $scope.flowSum = flow.reduce(function(pv, cv) {
                 return pv + cv;
             }, 0);
+
+
         };
+
 
     }
 ]);
