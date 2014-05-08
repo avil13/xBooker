@@ -23,7 +23,38 @@ xApp.config(['$routeProvider',
                 redirectTo: '/spending'
             });
     }
-]);
+])
+    .filter('checkDate', function() {
+        return function(incomes, checkDate) {
+
+            var FilteredList = [],
+                date2 = checkDate || new Date();
+
+            date2.setHours(23);
+            date2.setMinutes(59);
+            date2.setSeconds(59);
+
+            var date1 = new Date(date2.getTime()),
+                idate;
+
+            date1.setHours(0);
+            date1.setMinutes(0);
+            date1.setSeconds(10);
+
+            date1.setMonth(date1.getMonth() - 1);
+
+
+            for (var k in incomes) {
+                idate = new Date(incomes[k].date);
+                if (idate >= date1 && idate <= date2) {
+                    FilteredList.push(incomes[k]);
+                }
+            }
+
+            return FilteredList;
+        };
+    });
+
 
 
 var count_prs = function(obj) {

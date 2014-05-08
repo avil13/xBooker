@@ -302,6 +302,9 @@ xApp.controller('chartCtrl', ['$scope',
         $scope.incomeSum = '';
         $scope.flowSum = '';
         $scope.incomes = [];
+        $scope.showMoneySrc = false;
+        $scope.checkDate = new Date();
+        $scope.showListBtn = true;
 
 
         var width = (window.innerWidth > window.innerHeight) ? window.innerWidth : window.innerHeight;
@@ -367,6 +370,7 @@ xApp.controller('chartCtrl', ['$scope',
                 day = [],
                 d1, d2;
 
+            // список расходов
             $scope[nameStorage + 's'] = storObj;
 
             dt.setDate(dt.getDate() + 1);
@@ -428,8 +432,31 @@ xApp.controller('chartCtrl', ['$scope',
             }, 0);
 
 
-        };
+            $scope.checkDate = new Date($scope.$$childHead.currDate);
+            $scope.showListBtn = false;
 
+
+        }; // End showChart
+
+
+        $scope.removeRecord = function(name, nameStorage) {
+            if (confirm("Вы уверены, что вам больше не нужен\n" + name.name)) {
+                var obj = br.storage.get(nameStorage);
+
+                var toDel = JSON.stringify(name);
+
+                for(var k in obj){
+                    if(JSON.stringify(obj[k]) === toDel){
+                        delete obj[k];
+                        $scope[nameStorage + 's'] = obj;
+                        break;
+                    }
+                }
+
+                br.storage.set(nameStorage, $scope[nameStorage + 's']);
+            }
+
+        };
 
     }
 ]);

@@ -5,9 +5,13 @@
 }
 
 
-.content input, .content select, .content button, .content textarea{
-  width:96%;
+.content input,
+.content select,
+.content button,
+.content textarea,
+.content .topcoat-list__container{
   margin:0 auto;
+  width:96%;
 }
  .content hr{
   width:90%;
@@ -68,6 +72,8 @@ select {
   border: 1px solid #333434;
   background-color: #3f4041;
   box-shadow: inset 0 1px rgba(0,0,0,0.05);
+  color: #92DDF7;
+  text-shadow: 0 0 4px rgba(0, 183, 255, 1);
 }
 
 .lbl{
@@ -181,6 +187,35 @@ table.date .not{
 #myChart{
   margin:20px auto;
 }
+
+
+.incomes small b,
+.flows small b{
+  margin-left:20px;
+}
+.incomes span,
+.flows span{
+  width:100%;
+  display:block;
+}
+
+.incomes span{
+  color: #36f32f;
+}
+.flows span{
+  color: #f35c68;
+}
+
+.incomes .del,
+.flows .del{
+  color: #f3060e;
+  font-size: 2rem;
+  position:absolute;
+  top: 4px;
+  right: 10px;
+  left: 92%;
+}
+
 
 
 /*

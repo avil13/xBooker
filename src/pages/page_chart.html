@@ -19,13 +19,48 @@
     <span>{{flowSum | currency}}</span>
 </div>
 
-<ul class="incomes topcoat-list__container">
-    <li ng-repeat="i in incomes " class="topcoat-list__item">
-        {{i.date | date:'longDate'}}
-        {{i.name}}
-        {{i.money}}
-    </li>
-</ul>
 
+
+<div ng-switch on="showMoneySrc" ng-hide="showListBtn">
+
+    <div class="topcoat-button-bar">
+        <div class="topcoat-button-bar__item">
+            <button ng-click="showMoneySrc='Incomes'"
+            ng-class="{active: showMoneySrc=='Incomes'}" class="topcoat-button-bar__button">доходы</button>
+        </div>
+        <div class="topcoat-button-bar__item">
+            <button ng-click="showMoneySrc='Flows'"
+            ng-class="{active: showMoneySrc=='Flows'}" class="topcoat-button-bar__button">расходы</button>
+        </div>
+    </div>
+
+<!--  -->
+    <div ng-switch-default></div>
+<!--  -->
+
+    <ul ng-switch-when="Incomes" class="incomes topcoat-list__container">
+        <li ng-repeat="i in incomes | checkDate:checkDate | orderBy:date " class="topcoat-list__item">
+            <small>
+                {{i.date | date:'longDate'}} <b>( {{i.money | currency}} )</b>
+            </small>
+            <hr>
+            <span>{{i.name}}</span>
+            <span ng-click="removeRecord(i, 'income')" class="del">X</span>
+        </li>
+    </ul>
+<!--  -->
+    <ul ng-switch-when="Flows" class="flows topcoat-list__container">
+        <li ng-repeat="i in flows | checkDate:checkDate | orderBy:date" class="topcoat-list__item">
+            <small>
+                {{i.date | date:'longDate'}} <b>( {{i.money | currency}} )</b>
+            </small>
+            <hr>
+            <span>{{i.name}}</span>
+            <small>{{i.comment}}</small>
+            <span ng-click="removeRecord(i, 'flow')" class="del">X</span>
+        </li>
+    </ul>
+
+</div>
 
 <div class="empty"></div>
