@@ -62,6 +62,11 @@ select {
   -moz-appearance: button;
 }
 
+OPTGROUP{
+  color: #b0ecf3;
+  background-color: #375264;
+}
+
 
 .topcoat-button-bar{
   margin:4px auto;
