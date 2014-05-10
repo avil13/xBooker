@@ -25,7 +25,7 @@
             <li class="topcoat-list__item" ng-repeat="pl in plans">
                 {{pl.name}} ( {{(100* pl.money / pl.nead)| number:0}}% )
                 <small>{{pl.money | currency}} / {{pl.nead | currency}}</small>
-                <span ng-click="removePlan(pl)" class="del-plan">X</span>
+                <a href="" ng-click="removePlan(pl)" class="del-plan">X</a>
             </li>
         </ul>
     </div>

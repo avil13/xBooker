@@ -45,7 +45,7 @@
             </small>
             <hr>
             <span>{{i.name}}</span>
-            <span ng-click="removeRecord(i, 'income')" class="del">X</span>
+            <a href="" ng-click="removeRecord(i, 'income')" class="del">X</a>
         </li>
     </ul>
 <!--  -->
@@ -56,8 +56,8 @@
             </small>
             <hr>
             <span>{{i.name}}</span>
-            <small>{{i.comment}}</small>
-            <span ng-click="removeRecord(i, 'flow')" class="del">X</span>
+            <small class="comment">{{i.comment}}</small>
+            <a href="" ng-click="removeRecord(i, 'flow')" class="del">X</a>
         </li>
     </ul>
 

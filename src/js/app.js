@@ -57,6 +57,14 @@ xApp.config(['$routeProvider',
 
 
 
+/****
+                    _ ____          _______
+ _   ______ _____  (_) / /___ _    / / ___/
+| | / / __ `/ __ \/ / / / __ `/_  / /\__ \
+| |/ / /_/ / / / / / / / /_/ / /_/ /___/ /
+|___/\__,_/_/ /_/_/_/_/\__,_/\____//____/
+
+*/
 var count_prs = function(obj) {
     var count = 0;
     for (var prs in obj) {
@@ -79,3 +87,23 @@ var sortObj = function(obj) {
 
     return sortedObj;
 };
+
+window.alert = function(str) {
+    var el = document.getElementById('alert');
+    document.getElementById('alert-text').innerHTML = str;
+    el.classList.add('show-el');
+    setTimeout(function() {
+        el.classList.remove('show-el');
+    }, 2000);
+};
+
+
+
+
+
+
+
+
+
+
+

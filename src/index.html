@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/topcoat-mobile-dark.css">
     <link rel="stylesheet" href="css/style.css">
 <!--
- -->
     <script src="js/cordova.js"></script>
+ -->
 
     <script src="js/angular/angular.js"></script>
     <script src="js/angular/angular-locale_ru-ru.js"></script>
@@ -35,6 +35,22 @@
     </div>
 
     <div class="content" ng-view ng-animate="{ enter: 'animation-enter'}"></div>
+
+
+
+<!--  -->
+    <div id="alert">
+        <span id="alert-text"></span>
+        <!-- <button class="topcoat-button--cta">Ok.</button> -->
+    </div>
+
+    <div id="confirm">
+        <span id="confirm-text"></span>
+        <button class="topcoat-button--cta" id="yes-confirm">Да</button>
+        <button class="topcoat-button" id="no-confirm">Нет</button>
+    </div>
+
+
 
 </body>
 

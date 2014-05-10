@@ -415,12 +415,12 @@ xApp.controller('chartCtrl', ['$scope',
             var data = {
                 labels: days,
                 datasets: [{
-                    fillColor: "rgba(255, 18, 18, 0.5)",
-                    strokeColor: "rgba(255, 118, 118, 0.8)",
+                    fillColor: "rgba(255, 18, 18, 0.8)",
+                    strokeColor: "rgba(255, 118, 118, 1)",
                     data: flow
                 }, {
-                    fillColor: "rgba(73, 219, 120, 0.5)",
-                    strokeColor: "rgba(202, 255, 219, 0.8)",
+                    fillColor: "rgba(73, 219, 120, 0.8)",
+                    strokeColor: "rgba(202, 255, 219, 1)",
                     data: income
                 }]
             };
