@@ -9,12 +9,12 @@
 
 <hr>
 
-<div ng-show="incomeSum" class="incomeSum lbl">
+<div ng-show="incomeSum||flowSum" class="incomeSum lbl">
     За выбранный период заработано:
     <span>{{incomeSum | currency}}</span>
 </div>
 
-<div ng-show="incomeSum" class="flowSum lbl">
+<div ng-show="incomeSum||flowSum" class="flowSum lbl">
     За выбранный период потрачено:
     <span>{{flowSum | currency}}</span>
 </div>
