@@ -9,7 +9,7 @@
 <canvas id="myChartFlow"></canvas>
 
 <ul class="simple-list">
-    <li ng-repeat="el in flow">
+    <li ng-repeat="el in flow | orderBy:value">
         <span style="color:{{ el.color }};"> <b>{{ el.value|currency }} -</b> {{ el.name }}</span>
     </li>
 </ul>
@@ -19,7 +19,7 @@
 <canvas id="myChartIncomes"></canvas>
 
 <ul class="simple-list">
-    <li ng-repeat="el in income">
+    <li ng-repeat="el in income | orderBy:value">
         <span style="color:{{ el.color }};"> <b>{{ el.value|currency }} -</b> {{ el.name }}</span>
     </li>
 </ul>
