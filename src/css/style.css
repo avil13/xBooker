@@ -154,7 +154,15 @@ OPTGROUP{
   width: 100%;
 }
 
-
+.simple-list{
+  padding: 0 1rem;
+}
+.simple-list li{
+  list-style-type:none;
+  margin-bottom:8px;
+  padding-bottom:4px;
+  border-bottom:1px solid #635E5E;
+}
 
 
 

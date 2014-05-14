@@ -11,9 +11,15 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
         }, {
             url: '#/plans',
             name: 'Планы'
-        }, {
+        }];
+
+
+        $scope.MenuChart = [{
             url: '#/chart',
-            name: 'График'
+            name: 'График 1'
+        }, {
+            url: '#/chart2',
+            name: 'График 2'
         }];
 
         $scope.activePath = null;
@@ -21,9 +27,9 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
         $scope.$on('$routeChangeSuccess', function() {
             $scope.activePath = '#' + $location.path();
         });
-
     }
 ]);
+
 
 
 // Контроллер расходов
@@ -299,7 +305,7 @@ xApp.controller('dateCtrl', ['$scope',
 
 
 
-// Контроллер графиков
+// Контроллер графика 1
 xApp.controller('chartCtrl', ['$scope',
     function($scope) {
 
@@ -449,8 +455,8 @@ xApp.controller('chartCtrl', ['$scope',
 
                 var toDel = JSON.stringify(name);
 
-                for(var k in obj){
-                    if(JSON.stringify(obj[k]) === toDel){
+                for (var k in obj) {
+                    if (JSON.stringify(obj[k]) === toDel) {
                         delete obj[k];
                         $scope[nameStorage + 's'] = obj;
                         break;
@@ -465,5 +471,99 @@ xApp.controller('chartCtrl', ['$scope',
     }
 ]);
 
+
+
+
+// контроллер графиков статистики   //////////////////////////////////////////////////////
+xApp.controller('chart2Ctrl', ['$scope',
+    function($scope) {
+
+        $scope.flow = [];
+        $scope.income = [];
+
+        var width = (window.innerWidth < window.innerHeight) ? window.innerWidth : window.innerHeight;
+
+        document.getElementById("myChartFlow").width = width - 6;
+        document.getElementById("myChartFlow").height = width - 30;
+        document.getElementById("myChartIncomes").width = width - 6;
+        document.getElementById("myChartIncomes").height = width - 30;
+
+
+        var ctx1 = document.getElementById("myChartFlow").getContext("2d");
+        var chart1 = new Chart(ctx1);
+
+        var ctx2 = document.getElementById("myChartIncomes").getContext("2d");
+        var chart2 = new Chart(ctx2);
+
+
+
+        $scope.showChart = function() {
+
+            var date = new Date($scope.$$childHead.currDate);
+
+            var time2 = date.getTime();
+            date.setMonth(date.getMonth() - 1);
+            var time1 = date.getTime();
+
+
+
+            var flowPolar = getMonthArr('flow', time1, time2);
+            var incomePolar = getMonthArr('income', time1, time2);
+
+            var myNewChart1 = chart1.PolarArea(flowPolar);
+            var myNewChart2 = chart2.Doughnut(incomePolar);
+
+            $scope.flow = flowPolar;
+            $scope.income = incomePolar;
+
+        }; // End showCharts
+
+
+
+        var getMonthArr = function(nameStorage, t1, t2) {
+
+            t1 = new Date(t1);
+            t1.setHours(0);
+            t1.setMinutes(0);
+            t1.setSeconds(10);
+            t1.setMilliseconds(0);
+            t1 = t1.getTime();
+
+            t2 = new Date(t2);
+            t2.setHours(23);
+            t2.setMinutes(59);
+            t2.setSeconds(59);
+            t2.setMilliseconds(999);
+            t2 = t2.getTime();
+
+            var storObj = br.storage.get(nameStorage),
+                data = {},
+                res = [],
+                el_date,
+                el_name;
+
+            for (var el in storObj) {
+                el_date = parseInt(el, 10);
+
+                if (t1 < el_date && el_date < t2) {
+                    el_name = storObj[el].name.toLowerCase();
+
+                    if (!data[el_name])
+                        data[el_name] = {};
+
+                    data[el_name].name = el_name;
+                    data[el_name].value = storObj[el].money + (data[el_name].value || 0);
+                    data[el_name].color = Color();
+                }
+            }
+
+            for (var d_el in data) {
+                res.push(data[d_el]);
+            }
+
+            return res;
+        };
+    }
+]);
 
 /////

@@ -19,6 +19,10 @@ xApp.config(['$routeProvider',
                 templateUrl: 'pages/page_chart.html',
                 controller: 'chartCtrl'
             })
+            .when('/chart2', {
+                templateUrl: 'pages/page_chart2.html',
+                controller: 'chart2Ctrl'
+            })
             .otherwise({
                 redirectTo: '/spending'
             });
@@ -97,13 +101,8 @@ window.alert = function(str) {
     }, 2000);
 };
 
-
-
-
-
-
-
-
-
-
-
+var Color = function() {
+    var rand = 1100000 + Math.random() * 14899999;
+    rand = Math.round(rand);
+    return '#' + (rand).toString(16);
+};

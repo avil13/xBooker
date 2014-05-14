@@ -1,0 +1,29 @@
+<div ng-controller="dateCtrl" class="lbl" ng-model="date">
+    <div ng-include="'pages/date.html'"></div>
+</div>
+
+
+<button class="topcoat-button--cta" ng-click="showChart()">Показать графики за месяц</button>
+
+
+<canvas id="myChartFlow"></canvas>
+
+<ul class="simple-list">
+    <li ng-repeat="el in flow">
+        <span style="color:{{ el.color }};"> <b>{{ el.value|currency }} -</b> {{ el.name }}</span>
+    </li>
+</ul>
+
+<hr>
+
+<canvas id="myChartIncomes"></canvas>
+
+<ul class="simple-list">
+    <li ng-repeat="el in income">
+        <span style="color:{{ el.color }};"> <b>{{ el.value|currency }} -</b> {{ el.name }}</span>
+    </li>
+</ul>
+
+<hr>
+
+<div class="empty"></div>
