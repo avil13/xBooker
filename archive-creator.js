@@ -45,9 +45,15 @@ var Comment = function(file) {
 
 Comment('src/index.html');
 
+// Удаляем файл предыдущего архива
+file_system.unlink('Src.zip', function(err) {
+    if (err)
+        console.log('file Src.zip Not found... Sorry');
+    else
+        console.log('file Src.zip DELETED!!!');
+});
 
 setTimeout(function() {
-
 
     var output = file_system.createWriteStream('Src.zip');
     var archive = archiver('zip');
@@ -79,8 +85,6 @@ setTimeout(function() {
 
 }, 300);
 
-setTimeout(function () {
+setTimeout(function() {
     Comment('src/index.html');
 }, 1000);
-
-

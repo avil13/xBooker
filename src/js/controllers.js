@@ -49,6 +49,7 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
         $scope.money = '';
         $scope.comment = '';
+        $scope.autocomplete = [];
 
 
         $scope.getData = function() {
@@ -98,6 +99,36 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
             $scope.comment = '';
 
             alert('Даныне сохранены');
+        };
+
+
+        $scope.autoComplete = function() {
+            var name = $scope.comment;
+            $scope.autocomplete = [];
+
+            if (name.length > 1) {
+                var flow = br.storage.get('flow'),
+                    obj = {},
+                    k;
+
+                for (k in flow) {
+                    if (flow[k].comment.indexOf(name) > -1) {
+                        obj[flow[k].comment] = {
+                            name: flow[k].comment,
+                            similar: similar_text(name, flow[k].comment)
+                        };
+                    }
+                }
+
+                for (k in obj) {
+                    $scope.autocomplete.push(obj[k]);
+                }
+            }
+        };
+
+        $scope.putName = function(name) {
+            $scope.comment = name;
+            $scope.autocomplete = [];
         };
 
     }
@@ -470,7 +501,6 @@ xApp.controller('chartCtrl', ['$scope',
 
     }
 ]);
-
 
 
 

@@ -39,7 +39,7 @@
 <!--  -->
 
     <ul ng-switch-when="Incomes" class="incomes topcoat-list__container">
-        <li ng-repeat="i in incomes | checkDate:checkDate | orderBy:date " class="topcoat-list__item">
+        <li ng-repeat="i in incomes | checkDate:checkDate | orderBy:date:true " class="topcoat-list__item">
             <small>
                 {{i.date | date:'longDate'}} <b>( {{i.money | currency}} )</b>
             </small>
@@ -50,7 +50,7 @@
     </ul>
 <!--  -->
     <ul ng-switch-when="Flows" class="flows topcoat-list__container">
-        <li ng-repeat="i in flows | checkDate:checkDate | orderBy:date" class="topcoat-list__item">
+        <li ng-repeat="i in flows | checkDate:checkDate | orderBy:date:true" class="topcoat-list__item">
             <small>
                 {{i.date | date:'longDate'}} <b>( {{i.money | currency}} )</b>
             </small>
