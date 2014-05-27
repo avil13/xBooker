@@ -54,6 +54,7 @@ xApp.controller('spendingCtrl', ['$scope', '$http',
 
         $scope.getData = function() {
             if ($scope.money === '') {
+                navigator.notification.vibrate(1000);
                 alert('Вы забыли указать сумму');
                 return false;
             }
@@ -180,9 +181,21 @@ xApp.controller('plansCtrl', ['$scope',
 
         $scope.removePlan = function(name) {
             if (confirm("Вы уверены, что вам больше не нужен\n" + name.name)) {
+
                 var i = $scope.plans.indexOf(name);
                 $scope.plans.splice(i, 1);
                 br.storage.set('plans', $scope.plans);
+
+                var flow = br.storage.get('flow');
+                var new_flow = {};
+
+                for(var k in flow){
+                    if(flow[k].name!==name.name){
+                        new_flow[k] = flow[k];
+                    }
+                }
+
+                br.storage.set('flow', new_flow);
             }
 
         };

@@ -78,6 +78,8 @@ var count_prs = function(obj) {
     return count;
 };
 
+
+
 var sortObj = function(obj) {
 
     var sortedKeys = Object.keys(obj);
@@ -92,6 +94,8 @@ var sortObj = function(obj) {
     return sortedObj;
 };
 
+
+
 window.alert = function(str) {
     var el = document.getElementById('alert');
     document.getElementById('alert-text').innerHTML = str;
@@ -101,11 +105,14 @@ window.alert = function(str) {
     }, 2000);
 };
 
+
+
 var Color = function() {
     var rand = 1100000 + Math.random() * 14899999;
     rand = Math.round(rand);
     return '#' + (rand).toString(16);
 };
+
 
 
 var similar_text = function(first, second, percent) {
