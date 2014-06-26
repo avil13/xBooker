@@ -11,7 +11,31 @@
 </p>
 
 <!--
-<label class="lbl">
-    <button ng-click="sendRequest()" class="topcoat-button--large--cta">Отправить</button>
-</label>
  -->
+
+
+
+<label class="lbl">
+    <button ng-click="sendRequest()" class="topcoat-button" ng-disabled="false">Авторизация</button>
+</label>
+<label class="lbl">
+    <button ng-click="sendRequest()" class="topcoat-button" ng-disabled="true">Регистрация</button>
+</label>
+
+
+<label class="lbl">
+    <input ng-model="email" type="text" maxlength="30" class="topcoat-text-input" placeholder="email">
+</label>
+
+<label class="lbl">
+    <input ng-model="password" type="password" maxlength="30" class="topcoat-text-input" placeholder="Пароль">
+</label>
+
+<label class="lbl">
+    <input ng-model="c_password" type="password" maxlength="30" class="topcoat-text-input" placeholder="Повтор пароля">
+</label>
+
+
+<label class="lbl">
+    <button ng-click="sendRequest()" class="topcoat-button--large--cta">Ok!</button>
+</label>
