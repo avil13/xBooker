@@ -4,22 +4,28 @@ xApp.controller('menuCtrl', ['$scope', '$location', '$route',
 
         $scope.Menu = [{
             url: '#/spending',
-            name: 'Расходы'
+            name: 'Расходы',
+            img: 'img/minus.png'
         }, {
             url: '#/profit',
-            name: 'Доходы'
+            name: 'Доходы',
+            img: 'img/plus.png'
         }, {
             url: '#/plans',
-            name: 'Планы'
-        }];
-
-
-        $scope.MenuChart = [{
+            name: 'Планы',
+            img: 'img/pencil.png'
+        }, {
             url: '#/chart',
-            name: 'График 1'
+            name: 'График',
+            img: 'img/chart-bar.png'
         }, {
             url: '#/chart2',
-            name: 'График 2'
+            name: 'График',
+            img: 'img/chart-pie.png'
+        }, {
+            url: '#/sinchronize',
+            name: 'Синх.',
+            img: 'img/sinchronize.png'
         }];
 
         $scope.activePath = null;
@@ -189,8 +195,8 @@ xApp.controller('plansCtrl', ['$scope',
                 var flow = br.storage.get('flow');
                 var new_flow = {};
 
-                for(var k in flow){
-                    if(flow[k].name!==name.name){
+                for (var k in flow) {
+                    if (flow[k].name !== name.name) {
                         new_flow[k] = flow[k];
                     }
                 }
@@ -606,6 +612,14 @@ xApp.controller('chart2Ctrl', ['$scope',
 
             return res;
         };
+    }
+]);
+
+
+// контроллер синхронизации
+xApp.controller('sinchronizeCtrl', ['$scope',
+    function($scope) {
+        $scope.title = 'Данный функционал в разработке';
     }
 ]);
 

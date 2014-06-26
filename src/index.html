@@ -32,14 +32,12 @@
 
 <body>
 
-    <div class="topcoat-button-bar" ng-controller="menuCtrl">
+    <div class="topcoat-button-bar top" ng-controller="menuCtrl">
         <div class="topcoat-button-bar__item" ng-repeat="menu in Menu">
-            <a class="topcoat-button-bar__button" ng-class="{ active: activePath==menu.url }" href="{{menu.url}}">{{menu.name}}</a>
-        </div>
-    </div>
-    <div class="topcoat-button-bar" ng-controller="menuCtrl">
-        <div class="topcoat-button-bar__item" ng-repeat="menu in MenuChart">
-            <a class="topcoat-button-bar__button" ng-class="{ active: activePath==menu.url }" href="{{menu.url}}">{{menu.name}}</a>
+            <a class="topcoat-button-bar__button" ng-class="{ active: activePath==menu.url }" href="{{menu.url}}">
+                <img ng-src="{{menu.img}}" alt="">
+                {{menu.name}}
+            </a>
         </div>
     </div>
 

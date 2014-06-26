@@ -23,6 +23,10 @@ xApp.config(['$routeProvider',
                 templateUrl: 'pages/page_chart2.html',
                 controller: 'chart2Ctrl'
             })
+            .when('/sinchronize', {
+                templateUrl: 'pages/sinchronize.html',
+                controller: 'sinchronizeCtrl'
+            })
             .otherwise({
                 redirectTo: '/spending'
             });

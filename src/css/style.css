@@ -69,8 +69,11 @@ OPTGROUP{
   max-width: 20%;
 }
 .topcoat-button-bar__button{
-  padding: 0.1rem 0.6rem;
+  padding: 0.1rem 0.5rem;
   font-size: 0.8rem;
+}
+.top .topcoat-button-bar__button{
+  font-size: .5em;
 }
 .topcoat-button-bar__button.active,
 .topcoat-button-bar__button--large.active {
@@ -81,7 +84,14 @@ OPTGROUP{
   color: #92DDF7;
   text-shadow: 0 0 4px rgba(0, 183, 255, 1);;
 }
-
+.topcoat-button-bar__button img{
+  display: block;
+  margin: 0 auto;
+  opacity: 0.4;
+  margin-bottom: -0.5rem;
+  padding-top: 0.4rem;
+  width: 1.6rem;
+   }
 
 .lbl{
   width:100%;
@@ -168,26 +178,37 @@ table.date{
   border-radius: 2px;
   padding:1px 2px;
   background-color: #4c4c4c;
+  width: 100%;
 }
 
 table.date tr>*{
-  -webkit-border-radius: 2px;
-
-  -webkit-box-shadow:inset 0 -2px 0 0 #00D100;
-  box-shadow:inset 0 -2px 0 0 #00D100;
+  background: #feffff;
+  background: -moz-linear-gradient(top,  #feffff 0%, #d2ebf9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feffff), color-stop(100%,#d2ebf9));
+  background: -webkit-linear-gradient(top,  #feffff 0%,#d2ebf9 100%);
+  background: -o-linear-gradient(top,  #feffff 0%,#d2ebf9 100%);
+  background: -ms-linear-gradient(top,  #feffff 0%,#d2ebf9 100%);
+  background: linear-gradient(to bottom,  #feffff 0%,#d2ebf9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=0 );
 
   padding:8px 11px;
   background-color:#fff;
-
 }
 
-table.date th{
-  background-color:#CEFFDF;
-  margin-bottom:59px;
+table.date tr .active, table.date tr th{
+  background: #49c0f0;
+  background: -moz-linear-gradient(top,  #49c0f0 0%, #2cafe3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#49c0f0), color-stop(100%,#2cafe3));
+  background: -webkit-linear-gradient(top,  #49c0f0 0%,#2cafe3 100%);
+  background: -o-linear-gradient(top,  #49c0f0 0%,#2cafe3 100%);
+  background: -ms-linear-gradient(top,  #49c0f0 0%,#2cafe3 100%);
+  background: linear-gradient(to bottom,  #49c0f0 0%,#2cafe3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2cafe3',GradientType=0 );
+  ilter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 );
 }
 
-table.date .active{
-  background-color: #66ccff;
+table.date tr th{
+  border-bottom: 2px solid #F09680;
 }
 
 table.date .not{
