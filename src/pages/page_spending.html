@@ -14,7 +14,7 @@
 </label>
 
 <label class="lbl">
-    <input ng-model="comment" ng-change="autoComplete()" type="text" maxlength="100" class="topcoat-text-input" placeholder="Комментарий">
+    <input ng-model="comment" maxlength="30" ng-change="autoComplete()" type="text" maxlength="100" class="topcoat-text-input" placeholder="Комментарий">
 
     <ul class="autocomplete" ng-class="{show: autocomplete.length>0 && comment.length>0}">
         <li ng-repeat="el in autocomplete | orderBy:similar | limitTo:3" ng-click="putName(el.name)">{{el.name}}</li>

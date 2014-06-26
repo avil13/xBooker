@@ -349,8 +349,6 @@ xApp.controller('dateCtrl', ['$scope',
         $scope.weeks = getWeeks();
         $scope.weekdays = getDaysOfWeek();
     }
-
-
 ]);
 
 
@@ -617,10 +615,28 @@ xApp.controller('chart2Ctrl', ['$scope',
 
 
 // контроллер синхронизации
-xApp.controller('sinchronizeCtrl', ['$scope',
-    function($scope) {
+xApp.controller('sinchronizeCtrl', ['$scope', '$http',
+    function($scope, $http) {
         $scope.title = 'Данный функционал в разработке';
+
+
+        $scope.sendRequest = function() {
+
+            var data = {
+                action: 'Registration',
+                email: 'a.1.3@mail.ru',
+                password: 'x123'
+            };
+
+            $http
+                .jsonp('http://myproject.loc/xBooker-api/?input=123&callback=JSON_CALLBACK')
+                .success(function(data, status, headers, config) {
+                    console.log(data);
+                })
+                .error(function(data, status, headers, config) {
+                    console.log(data);
+                });
+
+        };
     }
 ]);
-
-/////
