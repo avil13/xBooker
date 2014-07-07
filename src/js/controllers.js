@@ -625,17 +625,36 @@ xApp.controller('sinchronizeCtrl', ['$scope', '$http',
             var data = {
                 action: 'Registration',
                 email: 'a.1.3@mail.ru',
-                password: 'x123'
+                password: 'x123',
+                ob: {
+                    sync: true,
+                    date: 1404757998,
+                    lorem: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum non impedit suscipit possimus, blanditiis nobis veniam inventore laudantium iure recusandae mollitia numquam odit, iusto repellat est ipsa ratione. Dignissimos, optio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum delectus excepturi, corporis, culpa, nam sint eaque quasi voluptas qui cupiditate numquam quo earum vel commodi cumque molestias laboriosam fugit quisquam.  !!!!!!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis consectetur dignissimos vero enim temporibus quisquam amet molestiae velit neque veniam illum eum repellat sapiente, harum voluptatum ipsam! Alias distinctio, dolorum. !!!!!'
+                }
             };
 
-            $http
-                .jsonp('http://myproject.loc/xBooker-api/?input=123&callback=JSON_CALLBACK')
-                .success(function(data, status, headers, config) {
+            // var URL = 'http://myproject.loc/xBooker-api/?callback=JSON_CALLBACK';
+            var URL = 'http://test.ru/cross-domain/index.php';
+
+            $http({
+                url: URL,
+                method: "POST",
+                data: serialize(data),
+                responseType: 'json',
+                headers: {
+                    'Authorization': 'Basic dGVzdDp0ZXN0',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+                .success(function(data, status) {
                     console.log(data);
                 })
-                .error(function(data, status, headers, config) {
+                .error(function(data, status) {
                     console.log(data);
+                    console.log(status);
                 });
+
+
 
         };
     }

@@ -172,3 +172,17 @@ var similar_text = function(first, second, percent) {
         return (sum * 200) / (firstLength + secondLength);
     }
 };
+
+
+
+var serialize = function(obj, prefix) {
+    var str = [];
+    for (var p in obj) {
+        var k = prefix ? prefix + "[" + p + "]" : p,
+            v = obj[p];
+        str.push(typeof v == "object" ?
+            serialize(v, k) :
+            encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+    return str.join("&");
+};
