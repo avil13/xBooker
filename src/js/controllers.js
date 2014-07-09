@@ -634,7 +634,8 @@ xApp.controller('sinchronizeCtrl', ['$scope', '$http',
             };
 
             // var URL = 'http://myproject.loc/xBooker-api/?callback=JSON_CALLBACK';
-            var URL = 'http://test.ru/cross-domain/index.php';
+            var URL = 'http://myproject.loc/xBooker-api';
+            // var URL = 'http://test.ru/cross-domain/index.php';
 
             $http({
                 url: URL,

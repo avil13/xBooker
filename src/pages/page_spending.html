@@ -6,11 +6,11 @@
 
 
 <label class="lbl">
-    <input ng-model="money" type="number" min="0" class="topcoat-text-input" placeholder="Сумма">
+    <select ng-model="select" ng-options="gr.name group by gr.grp for gr in groups"></select>
 </label>
 
 <label class="lbl">
-    <select ng-model="select" ng-options="gr.name group by gr.grp for gr in groups"></select>
+    <input ng-model="money" type="number" min="0" class="topcoat-text-input" placeholder="Сумма">
 </label>
 
 <label class="lbl">
