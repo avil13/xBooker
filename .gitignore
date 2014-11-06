@@ -1,0 +1,4 @@
+.DB_Store
+!.htaccess
+node_modules/*
+.DS_Store

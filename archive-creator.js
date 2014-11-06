@@ -2,13 +2,13 @@ var file_system = require('fs');
 var archiver = require('archiver');
 
 
-var Comment = function(file) {
+var Comment = function (file) {
 
     if (!file)
         file = 'index.html';
 
 
-    file_system.readFile(file, 'utf8', function(err, data) {
+    file_system.readFile(file, 'utf8', function (err, data) {
         if (err) {
             return console.log(err);
         }
@@ -31,7 +31,7 @@ var Comment = function(file) {
         data = line_data.join("\n");
 
         // write file
-        file_system.writeFile(file, data, function(err) {
+        file_system.writeFile(file, data, function (err) {
             if (err) {
                 console.log(err);
             } else {
@@ -46,24 +46,24 @@ var Comment = function(file) {
 Comment('src/index.html');
 
 // Удаляем файл предыдущего архива
-file_system.unlink('Src.zip', function(err) {
+file_system.unlink('Src.zip', function (err) {
     if (err)
         console.log('file Src.zip Not found... Sorry');
     else
         console.log('file Src.zip DELETED!!!');
 });
 
-setTimeout(function() {
+setTimeout(function () {
 
     var output = file_system.createWriteStream('Src.zip');
     var archive = archiver('zip');
 
-    output.on('close', function() {
+    output.on('close', function () {
         console.log(archive.pointer() + ' total bytes');
         console.log('archiver has been finalized and the output file descriptor has closed.');
     });
 
-    archive.on('error', function(err) {
+    archive.on('error', function (err) {
         throw err;
     });
 
@@ -85,6 +85,6 @@ setTimeout(function() {
 
 }, 300);
 
-setTimeout(function() {
+setTimeout(function () {
     Comment('src/index.html');
 }, 1000);
